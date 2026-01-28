@@ -568,7 +568,7 @@ function Home() {
                                         <h3 className={`text-xl font-space font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                             {project.title}
                                         </h3>
-                                        <p className={`text-base leading-relaxed mb-4 font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
+                                        <p className={`text-base leading-relaxed mb-4 font-medium line-clamp-4 ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                                             {project.description}
                                         </p>
                                         <a
