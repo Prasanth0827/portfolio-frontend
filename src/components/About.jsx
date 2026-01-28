@@ -106,7 +106,7 @@ export default function About() {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/90' : 'bg-white/90'}`}></div>
+                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/90' : 'bg-white/75'}`}></div>
             </div>
 
             {/* Main Content */}
@@ -127,7 +127,7 @@ export default function About() {
                             <h1 className={`text-3xl sm:text-4xl lg:text-5xl font-space font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                 About Me
                             </h1>
-                            <div className={`space-y-3 text-sm sm:text-base leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                            <div className={`space-y-3 text-sm sm:text-base leading-relaxed font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                                 <p className="whitespace-pre-line">
                                     {profile.aboutMe || `I'm ${profile.name}, a dedicated Frontend / MERN Stack Developer who loves building clean, responsive, and user-focused web applications. I specialize in React, JavaScript, HTML, CSS, and Tailwind. I focus on writing clean, scalable code and creating visually engaging interfaces. I enjoy solving problems, improving UI/UX, and continuously learning new technologies. My goal is to build scalable and user-friendly applications that make an impact.`}
                                 </p>
@@ -235,7 +235,7 @@ export default function About() {
                                                     className={`w-8 h-8 ${color}`}
                                                     aria-hidden="true"
                                                 />
-                                                <span className={`font-semibold text-sm ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
+                                                <span className={`font-bold text-sm ${darkMode ? 'text-gray-200' : 'text-gray-900'}`}>
                                                     {tech}
                                                 </span>
                                             </div>
@@ -245,7 +245,7 @@ export default function About() {
                             </div>
                         ) : (
                             <div className="text-center py-8">
-                                <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                    <p className={`text-lg font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                     Add your technologies in the Admin Panel to see them here.
                                 </p>
                             </div>

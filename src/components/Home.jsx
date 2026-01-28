@@ -71,19 +71,19 @@ function Home() {
             'cloudflare': { icon: SiCloudflare, color: 'text-orange-500' },
             'aws': { icon: FaCloud, color: 'text-orange-400' }
         };
-        
+
         // Try exact match first
         if (iconMap[techLower]) {
             return iconMap[techLower];
         }
-        
+
         // Try partial match
         for (const [key, value] of Object.entries(iconMap)) {
             if (techLower.includes(key) || key.includes(techLower)) {
                 return value;
             }
         }
-        
+
         // Default icon
         return { icon: FaCode, color: 'text-purple-400' };
     };
@@ -104,7 +104,7 @@ function Home() {
             'redux', 'mobx', 'zustand', 'recoil',
             'webpack', 'vite', 'parcel', 'rollup'
         ];
-        
+
         const backendKeywords = [
             'node', 'express', 'koa', 'fastify', 'nest',
             'mongodb', 'mongoose', 'postgresql', 'postgres', 'mysql', 'sqlite', 'redis',
@@ -113,7 +113,7 @@ function Home() {
             'socket', 'websocket', 'socket.io', 'socketio',
             'prisma', 'sequelize', 'typeorm', 'drizzle'
         ];
-        
+
         const devopsKeywords = [
             'aws', 'azure', 'gcp', 'google cloud',
             'nginx', 'apache', 'caddy',
@@ -134,23 +134,23 @@ function Home() {
         // Process ALL technologies - ensure nothing is missed
         techArray.forEach(tech => {
             if (!tech || typeof tech !== 'string') return; // Skip invalid entries
-            
+
             const techLower = tech.toLowerCase().trim();
             const { icon, color } = getTechIcon(tech);
-            
+
             const techObj = { name: tech.trim(), icon, color };
-            
+
             // More flexible matching - check if tech contains any keyword
-            const isFrontend = frontendKeywords.some(keyword => 
+            const isFrontend = frontendKeywords.some(keyword =>
                 techLower.includes(keyword) || keyword.includes(techLower)
             );
-            const isBackend = backendKeywords.some(keyword => 
+            const isBackend = backendKeywords.some(keyword =>
                 techLower.includes(keyword) || keyword.includes(techLower)
             );
-            const isDevops = devopsKeywords.some(keyword => 
+            const isDevops = devopsKeywords.some(keyword =>
                 techLower.includes(keyword) || keyword.includes(techLower)
             );
-            
+
             // Categorize (priority: frontend > backend > devops > other)
             if (isFrontend) {
                 categorized.frontend.push(techObj);
@@ -164,7 +164,7 @@ function Home() {
         });
 
         const techStack = [];
-        
+
         if (categorized.frontend.length > 0) {
             techStack.push({
                 category: "Frontend",
@@ -172,7 +172,7 @@ function Home() {
                 technologies: categorized.frontend
             });
         }
-        
+
         if (categorized.backend.length > 0) {
             techStack.push({
                 category: "Backend",
@@ -180,7 +180,7 @@ function Home() {
                 technologies: categorized.backend
             });
         }
-        
+
         if (categorized.devops.length > 0) {
             techStack.push({
                 category: "DevOps & Cloud",
@@ -188,7 +188,7 @@ function Home() {
                 technologies: categorized.devops
             });
         }
-        
+
         if (categorized.other.length > 0) {
             techStack.push({
                 category: "Other Technologies",
@@ -210,16 +210,16 @@ function Home() {
         }
 
         // Validation: Ensure all technologies are included
-        const totalCategorized = categorized.frontend.length + 
-                                  categorized.backend.length + 
-                                  categorized.devops.length + 
-                                  categorized.other.length;
+        const totalCategorized = categorized.frontend.length +
+            categorized.backend.length +
+            categorized.devops.length +
+            categorized.other.length;
         const totalInput = techArray.filter(t => t && typeof t === 'string').length;
-        
+
         if (totalCategorized !== totalInput) {
             console.warn(`⚠️ Tech stack mismatch: ${totalInput} input, ${totalCategorized} categorized`);
         }
-        
+
         console.log(`✅ Tech Stack Summary: Frontend(${categorized.frontend.length}), Backend(${categorized.backend.length}), DevOps(${categorized.devops.length}), Other(${categorized.other.length}), Total(${totalCategorized})`);
 
         return techStack; // Return only what's in backend - NO DEMO
@@ -229,9 +229,9 @@ function Home() {
     const profileTechStack = Array.isArray(profile?.techStack) ? profile.techStack : [];
     console.log('🔍 Tech Stack from Profile:', profileTechStack);
     console.log('📊 Profile TechStack Count:', profileTechStack.length);
-    
+
     const techStack = organizeTechStack(profileTechStack);
-    
+
     // Debug: Log organized tech stack
     console.log('📦 Organized Tech Stack:', techStack);
     console.log('📊 Total Technologies Displayed:', profileTechStack.length);
@@ -273,7 +273,7 @@ function Home() {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/85'}`}></div>
+                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/75'}`}></div>
             </div>
 
             {/* Main Content */}
@@ -307,7 +307,7 @@ function Home() {
                                 {/* Name and Greeting */}
                                 <div className="text-center space-y-3">
                                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-space font-bold">
-                                        <span className={`text-xl font-light ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                        <span className={`text-xl font-light ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                             Hello, I'm{' '}
                                         </span>
                                         <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
@@ -331,9 +331,9 @@ function Home() {
                                             ];
                                             const colorIndex = index % badgeColors.length;
                                             const colors = badgeColors[colorIndex];
-                                            
+
                                             return (
-                                                <span 
+                                                <span
                                                     key={index}
                                                     className={`px-3 py-1.5 rounded-full text-sm ${darkMode ? colors.dark : colors.light} border font-medium`}
                                                 >
@@ -357,18 +357,18 @@ function Home() {
                                     <h2 className={`text-3xl font-space font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                         About <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Me</span>
                                     </h2>
-                                    <div className={`space-y-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'} text-base leading-relaxed`}>
-                                        <div className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'}`}>
+                                    <div className={`space-y-4 ${darkMode ? 'text-gray-300' : 'text-gray-800'} text-base leading-relaxed font-medium`}>
+                                        <div className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/80 backdrop-blur-sm border border-gray-300 shadow-md'}`}>
                                             <p>
                                                 {profile.aboutHome1 || "I am a Full Stack MERN Developer skilled in building modern, scalable web applications that deliver exceptional user experiences."}
                                             </p>
                                         </div>
-                                        <div className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'}`}>
+                                        <div className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/80 backdrop-blur-sm border border-gray-300 shadow-md'}`}>
                                             <p>
                                                 {profile.aboutHome2 || "I develop secure backend APIs using Express.js, MongoDB, and JWT authentication. On the frontend, I work with React and Next.js to create fast, user-friendly interfaces."}
                                             </p>
                                         </div>
-                                        <div className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'}`}>
+                                        <div className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/80 backdrop-blur-sm border border-gray-300 shadow-md'}`}>
                                             <p>
                                                 {profile.aboutHome3 || "I have hands-on experience deploying applications on AWS with Nginx and Cloudflare. I'm passionate about building real-world products, optimizing performance, and learning advanced full-stack architecture."}
                                             </p>
@@ -378,7 +378,7 @@ function Home() {
 
                                 {/* Social Media Links */}
                                 <div className="flex items-center gap-4 pt-4">
-                                    <span className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Connect:</span>
+                                    <span className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>Connect:</span>
                                     <a
                                         href={profile.social.linkedin}
                                         target="_blank"
@@ -419,7 +419,7 @@ function Home() {
                             <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-space font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                 What I Do
                             </h2>
-                            <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                 Full-stack development services to bring your ideas to life
                             </p>
                         </motion.div>
@@ -437,7 +437,7 @@ function Home() {
                                         key={index}
                                         variants={itemVariants}
                                         whileHover={{ scale: 1.05, y: -5 }}
-                                        className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'} shadow-lg`}
+                                        className={`p-6 rounded-xl ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/80 backdrop-blur-sm border border-gray-300'} shadow-lg`}
                                     >
                                         <div className="w-14 h-14 rounded-xl bg-purple-600 flex items-center justify-center mb-4">
                                             <IconComponent className="w-7 h-7 text-white" />
@@ -445,7 +445,7 @@ function Home() {
                                         <h3 className={`text-xl font-space font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                             {service.title}
                                         </h3>
-                                        <p className={`text-base leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                        <p className={`text-base leading-relaxed font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                                             {service.description}
                                         </p>
                                     </motion.div>
@@ -485,7 +485,7 @@ function Home() {
                                 <div className={`text-5xl font-space font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                     {experience.projectsCompleted}
                                 </div>
-                                <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                     Projects Completed
                                 </p>
                             </motion.div>
@@ -500,7 +500,7 @@ function Home() {
                                 <div className={`text-5xl font-space font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                     {profile?.techStack?.length ? `${profile.techStack.length}+` : '0+'}
                                 </div>
-                                <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                     Technologies
                                 </p>
                             </motion.div>
@@ -515,7 +515,7 @@ function Home() {
                                 <div className={`text-5xl font-space font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                     {experience.yearsExperience}
                                 </div>
-                                <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                     Years Experience
                                 </p>
                             </motion.div>
@@ -535,7 +535,7 @@ function Home() {
                             <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-space font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                 Featured Projects
                             </h2>
-                            <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                 Check out some of my recent work and projects
                             </p>
                         </motion.div>
@@ -554,7 +554,7 @@ function Home() {
                                     animate={showAllProjects && index >= 3 ? { opacity: 1, y: 0 } : {}}
                                     transition={{ duration: 0.5, delay: (index - 3) * 0.1 }}
                                     whileHover={{ scale: 1.02, y: -5 }}
-                                    className={`rounded-xl overflow-hidden ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'} shadow-lg`}
+                                    className={`rounded-xl overflow-hidden ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/80 backdrop-blur-sm border border-gray-300'} shadow-lg`}
                                 >
                                     <div className="relative h-48 overflow-hidden">
                                         <img
@@ -568,7 +568,7 @@ function Home() {
                                         <h3 className={`text-xl font-space font-bold mb-3 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                             {project.title}
                                         </h3>
-                                        <p className={`text-base leading-relaxed mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                                        <p className={`text-base leading-relaxed mb-4 font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                                             {project.description}
                                         </p>
                                         <a
@@ -616,7 +616,7 @@ function Home() {
                             <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-space font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                 Tech Stack
                             </h2>
-                            <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                 Technologies and tools I use to build amazing digital experiences
                             </p>
                         </motion.div>
@@ -624,47 +624,47 @@ function Home() {
                         {techStack.length > 0 ? (
                             <div className="space-y-12">
                                 {techStack.map((stack, categoryIndex) => {
-                                const CategoryIcon = stack.icon
-                                return (
-                                    <motion.div
-                                        key={categoryIndex}
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={techStackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                                        transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
-                                        className="space-y-6"
-                                    >
-                                        <div className="flex items-center gap-3 mb-6">
-                                            <CategoryIcon className={`w-6 h-6 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`} />
-                                            <h3 className={`text-2xl font-space font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                                                {stack.category}
-                                            </h3>
-                                        </div>
+                                    const CategoryIcon = stack.icon
+                                    return (
+                                        <motion.div
+                                            key={categoryIndex}
+                                            initial={{ opacity: 0, y: 20 }}
+                                            animate={techStackInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                                            transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+                                            className="space-y-6"
+                                        >
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <CategoryIcon className={`w-6 h-6 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`} />
+                                                <h3 className={`text-2xl font-space font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+                                                    {stack.category}
+                                                </h3>
+                                            </div>
 
-                                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4">
-                                            {stack.technologies.map((tech, techIndex) => {
-                                                const TechIcon = tech.icon
-                                                return (
-                                                    <motion.div
-                                                        key={`${categoryIndex}-${techIndex}`}
-                                                        initial={{ opacity: 0, scale: 0.8 }}
-                                                        animate={techStackInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                                                        transition={{ duration: 0.4, delay: (categoryIndex * 0.2) + (techIndex * 0.05) }}
-                                                        whileHover={{ scale: 1.1, y: -5 }}
-                                                        className={`p-6 rounded-xl text-center ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'} shadow-lg`}
-                                                    >
-                                                        <div className="flex justify-center mb-3">
-                                                            <TechIcon className={`w-12 h-12 ${tech.color}`} />
-                                                        </div>
-                                                        <p className={`text-sm font-medium ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                                                            {tech.name}
-                                                        </p>
-                                                    </motion.div>
-                                                )
-                                            })}
-                                        </div>
-                                    </motion.div>
-                                )
-                            })}
+                                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-7 gap-4">
+                                                {stack.technologies.map((tech, techIndex) => {
+                                                    const TechIcon = tech.icon
+                                                    return (
+                                                        <motion.div
+                                                            key={`${categoryIndex}-${techIndex}`}
+                                                            initial={{ opacity: 0, scale: 0.8 }}
+                                                            animate={techStackInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                                                            transition={{ duration: 0.4, delay: (categoryIndex * 0.2) + (techIndex * 0.05) }}
+                                                            whileHover={{ scale: 1.1, y: -5 }}
+                                                            className={`p-6 rounded-xl text-center ${darkMode ? 'bg-black/20 backdrop-blur-sm border border-purple-900/30' : 'bg-white/60 backdrop-blur-sm border border-gray-200'} shadow-lg`}
+                                                        >
+                                                            <div className="flex justify-center mb-3">
+                                                                <TechIcon className={`w-12 h-12 ${tech.color}`} />
+                                                            </div>
+                                                            <p className={`text-sm font-semibold ${darkMode ? 'text-gray-300' : 'text-gray-900'}`}>
+                                                                {tech.name}
+                                                            </p>
+                                                        </motion.div>
+                                                    )
+                                                })}
+                                            </div>
+                                        </motion.div>
+                                    )
+                                })}
                             </div>
                         ) : (
                             <motion.div
@@ -673,7 +673,7 @@ function Home() {
                                 transition={{ duration: 0.6 }}
                                 className="text-center py-12"
                             >
-                                <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                                <p className={`text-lg font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                     Add your technologies in the Admin Panel to see them here.
                                 </p>
                             </motion.div>

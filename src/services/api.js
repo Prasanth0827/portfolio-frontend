@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 // Backend API URL - reads from environment variable
-// const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-lkeg.onrender.com/api';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+// const API_URL = import.meta.env.VITE_API_URL || 'https://portfolio-backend-lkeg.onrender.com/api';
 
 
 
@@ -12,7 +12,7 @@ const api = axios.create({
   headers: {
     'Content-Type': 'application/json'
   },
-  timeout: 10000 // 10 second timeout
+  timeout: 30000 // 30 second timeout
 });
 
 // Request interceptor - Add auth token to all requests

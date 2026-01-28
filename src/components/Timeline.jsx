@@ -61,7 +61,7 @@ function Timeline() {
                     <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-space font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                         My <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Journey</span>
                     </h2>
-                    <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                    <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                         Career Timeline & Milestones
                     </p>
                 </motion.div>
@@ -139,7 +139,7 @@ function Timeline() {
                                                 <h4 className={`text-base font-semibold mb-3 ${darkMode ? 'text-purple-400' : 'text-purple-600'}`}>
                                                     {item.company}
                                                 </h4>
-                                                <p className={`text-sm leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                                <p className={`text-sm leading-relaxed font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                                                     {item.description}
                                                 </p>
                                             </div>

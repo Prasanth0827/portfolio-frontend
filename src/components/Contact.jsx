@@ -68,7 +68,7 @@ function Contact() {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/85'}`}></div>
+                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/75'}`}></div>
             </div>
 
             {/* Notification Toast */}
@@ -113,7 +113,7 @@ function Contact() {
                             <h2 className={`text-4xl sm:text-5xl lg:text-6xl font-space font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                                 Get In <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Touch</span>
                             </h2>
-                            <p className={`text-base ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                            <p className={`text-base font-medium ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>
                                 Have a project in mind or want to collaborate? I'd love to hear from you.
                                 <br />Send me a message and I'll respond as soon as possible.
                             </p>
@@ -138,7 +138,7 @@ function Contact() {
                                             <FaEnvelope className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className={`text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Email</h4>
+                                            <h4 className={`text-sm font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}>Email</h4>
                                             <a href="mailto:hemaprasanth08@gmail.com" className={`text-base font-medium ${darkMode ? 'text-white hover:text-purple-400' : 'text-gray-900 hover:text-purple-600'} transition-colors`}>
                                                 hemaprasanth08@gmail.com
                                             </a>
@@ -150,7 +150,7 @@ function Contact() {
                                             <FaPhone className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className={`text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Phone</h4>
+                                            <h4 className={`text-sm font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}>Phone</h4>
                                             <a href={`tel:${contact.phone.replace(/\s/g, '')}`} className={`text-base font-medium ${darkMode ? 'text-white hover:text-purple-400' : 'text-gray-900 hover:text-purple-600'} transition-colors`}>
                                                 {contact.phone}
                                             </a>
@@ -162,14 +162,14 @@ function Contact() {
                                             <FaMapMarkerAlt className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className={`text-sm font-medium mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Location</h4>
+                                            <h4 className={`text-sm font-semibold mb-1 ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}>Location</h4>
                                             <p className={`text-base font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>{contact.location}</p>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className="mt-12">
-                                    <h4 className={`text-sm font-medium mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Follow me on</h4>
+                                    <h4 className={`text-sm font-semibold mb-4 ${darkMode ? 'text-gray-400' : 'text-gray-700'}`}>Follow me on</h4>
                                     <div className="flex gap-4">
                                         <a href={profile.social.linkedin} target="_blank" rel="noopener noreferrer" className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900'}`}>
                                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
@@ -197,7 +197,7 @@ function Contact() {
                                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Your Name *</label>
+                                            <label className={`text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>Your Name *</label>
                                             <input
                                                 type="text"
                                                 name="user_name"
@@ -207,7 +207,7 @@ function Contact() {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Email Address *</label>
+                                            <label className={`text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>Email Address *</label>
                                             <input
                                                 type="email"
                                                 name="user_email"
@@ -218,7 +218,7 @@ function Contact() {
                                         </div>
                                     </div>
                                     <div className="space-y-2">
-                                        <label className={`text-sm font-medium ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Message *</label>
+                                        <label className={`text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-800'}`}>Message *</label>
                                         <textarea
                                             rows="8"
                                             name="message"

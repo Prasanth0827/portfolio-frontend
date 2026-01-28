@@ -18,7 +18,7 @@ function Journey() {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/85'}`}></div>
+                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/75'}`}></div>
             </div>
 
             <div className="relative z-10 pt-20">
@@ -42,7 +42,7 @@ function Journey() {
                             </div>
 
                             {/* Profile Bio */}
-                            <div className={`leading-relaxed text-base ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+                            <div className={`leading-relaxed text-base font-medium ${darkMode ? 'text-gray-300' : 'text-gray-800'}`}>
                                 <p className="mb-4">
                                     I'm <span className="font-bold text-purple-400">{profile.name}</span>, a passionate <span className="font-semibold">{profile.role}</span> who enjoys building real-world, user-focused web applications.
                                 </p>
@@ -60,7 +60,7 @@ function Journey() {
                                     href={profile.social.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-blue-400 hover:text-white' : 'bg-gray-100 hover:bg-gray-200 text-blue-600 hover:text-gray-900'}`}
+                                    className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-blue-400 hover:text-white' : 'bg-gray-100 hover:bg-gray-200 text-blue-700 hover:text-blue-900'}`}
                                     title="LinkedIn"
                                 >
                                     <FaLinkedin className="w-6 h-6" />
@@ -69,7 +69,7 @@ function Journey() {
                                     href={profile.social.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900'}`}
+                                    className={`p-3 rounded-lg transition-colors ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-gray-400 hover:text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-800 hover:text-gray-900'}`}
                                     title="GitHub"
                                 >
                                     <FaGithub className="w-6 h-6" />
