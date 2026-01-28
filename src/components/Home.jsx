@@ -273,7 +273,7 @@ function Home() {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/75'}`}></div>
+                <div className={`absolute inset-0 ${darkMode ? 'bg-slate-950/85' : 'bg-white/40'}`}></div>
             </div>
 
             {/* Main Content */}
