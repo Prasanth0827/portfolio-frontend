@@ -15,6 +15,7 @@ import Navbar from './components/Navbar';
 import Contact from './components/Contact';
 
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton';
 
 // Protected Route Component
 function ProtectedRoute({ children }) {
@@ -67,25 +68,28 @@ function App() {
       </AnimatePresence>
 
       {!showIntro && (
-        <Router>
-          <Routes>
-            {/* Routes without Navbar */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/admin" element={
-              <ProtectedRoute>
-                <AdminPanel />
-              </ProtectedRoute>
-            } />
+        <>
+          <WhatsAppButton />
+          <Router>
+            <Routes>
+              {/* Routes without Navbar */}
+              <Route path="/login" element={<Login />} />
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <AdminPanel />
+                </ProtectedRoute>
+              } />
 
-            {/* Routes with Navbar and Footer */}
-            <Route path="/" element={<><Navbar /><Home /><Footer /></>} />
-            <Route path="/about" element={<><Navbar /><About /><Footer /></>} />
-            <Route path="/projects" element={<><Navbar /><Projects /><Footer /></>} />
-            <Route path="/journey" element={<><Navbar /><Journey /><Footer /></>} />
-            <Route path="/contact" element={<><Navbar /><Contact /><Footer /></>} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </Router>
+              {/* Routes with Navbar and Footer */}
+              <Route path="/" element={<><Navbar /><Home /><Footer /></>} />
+              <Route path="/about" element={<><Navbar /><About /><Footer /></>} />
+              <Route path="/projects" element={<><Navbar /><Projects /><Footer /></>} />
+              <Route path="/journey" element={<><Navbar /><Journey /><Footer /></>} />
+              <Route path="/contact" element={<><Navbar /><Contact /><Footer /></>} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </Router>
+        </>
       )}
     </>
   );
