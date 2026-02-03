@@ -1232,376 +1232,377 @@ const AdminPanel = () => {
                                     <FaSave /> Save Projects
                                 </button>
                             </div>
+                        </div>
                     )}
 
-                            {/* Services Tab */}
-                            {activeTab === 'services' && (
-                                <div className="space-y-6">
-                                    <div className="grid gap-6">
-                                        {localServices.map((service, index) => (
-                                            <div key={index} className="bg-slate-900 p-6 rounded-xl border border-gray-700">
-                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                    <div>
-                                                        <label className="block text-xs font-medium text-gray-500 mb-1">Title</label>
-                                                        <input
-                                                            type="text"
-                                                            value={service.title}
-                                                            onChange={(e) => handleServiceChange(index, 'title', e.target.value)}
-                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 focus:outline-none focus:border-purple-500"
-                                                        />
-                                                    </div>
-                                                    <div className="md:col-span-2">
-                                                        <label className="block text-xs font-medium text-gray-500 mb-1">Description</label>
-                                                        <textarea
-                                                            value={service.description}
-                                                            onChange={(e) => handleServiceChange(index, 'description', e.target.value)}
-                                                            rows="2"
-                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 focus:outline-none focus:border-purple-500"
-                                                        />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-
-                                    <button
-                                        onClick={saveServices}
-                                        className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                                    >
-                                        <FaSave /> Save Services
-                                    </button>
-                                </div>
-                            )}
-
-                            {/* Experience & Contact Tab */}
-                            {activeTab === 'experience' && (
-                                <div className="space-y-8">
-                                    {/* Contact Information */}
-                                    <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-900/30">
-                                        <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
-                                            📧 Contact Information
-                                        </h3>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {/* Services Tab */}
+                    {activeTab === 'services' && (
+                        <div className="space-y-6">
+                            <div className="grid gap-6">
+                                {localServices.map((service, index) => (
+                                    <div key={index} className="bg-slate-900 p-6 rounded-xl border border-gray-700">
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Email</label>
-                                                <input
-                                                    type="email"
-                                                    name="email"
-                                                    value={localContact?.email || ''}
-                                                    onChange={handleContactChange}
-                                                    placeholder="your@email.com"
-                                                    className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Phone</label>
+                                                <label className="block text-xs font-medium text-gray-500 mb-1">Title</label>
                                                 <input
                                                     type="text"
-                                                    name="phone"
-                                                    value={localContact?.phone || ''}
-                                                    onChange={handleContactChange}
-                                                    placeholder="+91 1234567890"
-                                                    className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Location</label>
-                                                <input
-                                                    type="text"
-                                                    name="location"
-                                                    value={localContact?.location || ''}
-                                                    onChange={handleContactChange}
-                                                    placeholder="City, Country"
-                                                    className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
-                                                />
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={saveContact}
-                                            className="mt-6 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-500 hover:opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-all"
-                                        >
-                                            <FaSave /> Save Contact Info
-                                        </button>
-                                    </div>
-
-                                    {/* Experience Stats */}
-                                    <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-900/30">
-                                        <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
-                                            🚀 Experience Stats
-                                        </h3>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                            <div className="bg-slate-900 p-6 rounded-lg border border-gray-700">
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Projects Completed</label>
-                                                <input
-                                                    type="text"
-                                                    name="projectsCompleted"
-                                                    value={localExperience?.projectsCompleted || ''}
-                                                    onChange={handleExperienceChange}
-                                                    placeholder="3+"
-                                                    className="w-full bg-slate-800 border border-gray-600 rounded-lg p-3 text-2xl font-bold focus:outline-none focus:border-purple-500 text-white text-center"
-                                                />
-                                                <p className="text-xs text-gray-500 text-center mt-2">e.g., 3+, 10+, 50+</p>
-                                            </div>
-                                            <div className="bg-slate-900 p-6 rounded-lg border border-gray-700">
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Technologies</label>
-                                                <input
-                                                    type="text"
-                                                    name="clientsSatisfied"
-                                                    value={localExperience?.clientsSatisfied || ''}
-                                                    onChange={handleExperienceChange}
-                                                    placeholder="30+"
-                                                    className="w-full bg-slate-800 border border-gray-600 rounded-lg p-3 text-2xl font-bold focus:outline-none focus:border-purple-500 text-white text-center"
-                                                />
-                                                <p className="text-xs text-gray-500 text-center mt-2">e.g., 10+, 20+</p>
-                                            </div>
-                                            <div className="bg-slate-900 p-6 rounded-lg border border-gray-700">
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Years Experience</label>
-                                                <input
-                                                    type="text"
-                                                    name="yearsExperience"
-                                                    value={localExperience?.yearsExperience || ''}
-                                                    onChange={handleExperienceChange}
-                                                    placeholder="2+"
-                                                    className="w-full bg-slate-800 border border-gray-600 rounded-lg p-3 text-2xl font-bold focus:outline-none focus:border-purple-500 text-white text-center"
-                                                />
-                                                <p className="text-xs text-gray-500 text-center mt-2">e.g., 1+, 2+, 5+</p>
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={saveExperience}
-                                            className="mt-6 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-all"
-                                        >
-                                            <FaSave /> Save Experience Stats
-                                        </button>
-                                    </div>
-
-                                    {/* Preview */}
-                                    <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 p-6 rounded-xl border border-purple-700/30">
-                                        <h4 className="text-lg font-bold text-white mb-4">📊 Preview (Homepage)</h4>
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                            <div className="text-center p-4 bg-slate-900/50 rounded-lg">
-                                                <div className="text-3xl font-bold text-purple-400">{localExperience?.projectsCompleted || '0+'}</div>
-                                                <div className="text-sm text-gray-400 mt-1">Projects Completed</div>
-                                            </div>
-                                            <div className="text-center p-4 bg-slate-900/50 rounded-lg">
-                                                <div className="text-3xl font-bold text-blue-400">{localExperience?.clientsSatisfied || '0+'}</div>
-                                                <div className="text-sm text-gray-400 mt-1">Clients Satisfied</div>
-                                            </div>
-                                            <div className="text-center p-4 bg-slate-900/50 rounded-lg">
-                                                <div className="text-3xl font-bold text-pink-400">{localExperience?.yearsExperience || '0+'}</div>
-                                                <div className="text-sm text-gray-400 mt-1">Years Experience</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-
-                            {/* Timeline Tab */}
-                            {activeTab === 'timeline' && (
-                                <div className="space-y-8">
-                                    {/* Profile Section (Added to Timeline Tab) */}
-                                    <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-900/30">
-                                        <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
-                                            👤 Profile & Bio
-                                        </h3>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Full Name</label>
-                                                <input
-                                                    type="text"
-                                                    name="name"
-                                                    value={localProfile.name}
-                                                    onChange={handleProfileChange}
-                                                    className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
-                                                />
-                                            </div>
-                                            <div>
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Role / Title</label>
-                                                <input
-                                                    type="text"
-                                                    name="role"
-                                                    value={localProfile.role}
-                                                    onChange={handleProfileChange}
-                                                    className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
+                                                    value={service.title}
+                                                    onChange={(e) => handleServiceChange(index, 'title', e.target.value)}
+                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 focus:outline-none focus:border-purple-500"
                                                 />
                                             </div>
                                             <div className="md:col-span-2">
-                                                <label className="block text-xs font-medium text-gray-400 mb-2">Bio / Description</label>
+                                                <label className="block text-xs font-medium text-gray-500 mb-1">Description</label>
                                                 <textarea
-                                                    name="bio"
-                                                    value={localProfile.bio}
-                                                    onChange={handleProfileChange}
-                                                    rows="4"
-                                                    className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white resize-none"
+                                                    value={service.description}
+                                                    onChange={(e) => handleServiceChange(index, 'description', e.target.value)}
+                                                    rows="2"
+                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 focus:outline-none focus:border-purple-500"
                                                 />
                                             </div>
-
                                         </div>
-                                        <button
-                                            onClick={saveProfile}
-                                            className="mt-6 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-all"
-                                        >
-                                            <FaSave /> Save Profile
-                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <button
+                                onClick={saveServices}
+                                className="flex items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                            >
+                                <FaSave /> Save Services
+                            </button>
+                        </div>
+                    )}
+
+                    {/* Experience & Contact Tab */}
+                    {activeTab === 'experience' && (
+                        <div className="space-y-8">
+                            {/* Contact Information */}
+                            <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-900/30">
+                                <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                                    📧 Contact Information
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Email</label>
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            value={localContact?.email || ''}
+                                            onChange={handleContactChange}
+                                            placeholder="your@email.com"
+                                            className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Phone</label>
+                                        <input
+                                            type="text"
+                                            name="phone"
+                                            value={localContact?.phone || ''}
+                                            onChange={handleContactChange}
+                                            placeholder="+91 1234567890"
+                                            className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Location</label>
+                                        <input
+                                            type="text"
+                                            name="location"
+                                            value={localContact?.location || ''}
+                                            onChange={handleContactChange}
+                                            placeholder="City, Country"
+                                            className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
+                                        />
                                     </div>
                                 </div>
-                            )}
-                            {/* Timeline Tab */}
-                            {
-                                activeTab === 'timeline' && (
-                                    <div className="space-y-6">
-                                        <div className="flex justify-between items-center">
-                                            <h2 className="text-xl font-bold text-white">Timeline & Education</h2>
-                                            <button
-                                                onClick={addTimelineItem}
-                                                className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2 transition-colors"
-                                            >
-                                                <FaPlus /> Add Entry
-                                            </button>
-                                        </div>
+                                <button
+                                    onClick={saveContact}
+                                    className="mt-6 flex items-center gap-2 bg-gradient-to-r from-teal-500 to-cyan-500 hover:opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-all"
+                                >
+                                    <FaSave /> Save Contact Info
+                                </button>
+                            </div>
 
-                                        <div className="space-y-4">
-                                            <Reorder.Group axis="y" values={localTimeline} onReorder={handleReorder} className="space-y-4">
-                                                {localTimeline.map((item, index) => (
-                                                    <Reorder.Item
-                                                        key={item.id || index}
-                                                        value={item}
-                                                        initial={{ opacity: 0, y: 20 }}
-                                                        animate={{ opacity: 1, y: 0 }}
-                                                        className="bg-slate-900 border border-gray-700 rounded-xl p-6 relative group"
-                                                    >
-                                                        <div className="absolute top-4 left-4 p-2 text-gray-600 cursor-grab active:cursor-grabbing hover:text-gray-400 z-10">
-                                                            <FaGripVertical />
-                                                        </div>
-                                                        <button
-                                                            onClick={() => removeTimelineItem(index)}
-                                                            className="absolute top-4 right-4 p-2 bg-red-500/10 text-red-500 rounded-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-red-500 hover:text-white"
-                                                            title="Delete Entry"
-                                                        >
-                                                            <FaTrash />
-                                                        </button>
-
-                                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 pl-8">
-                                                            <div className="md:col-span-2">
-                                                                <label className="block text-xs font-medium text-gray-400 mb-1">Type</label>
-                                                                <select
-                                                                    value={item.type || 'experience'}
-                                                                    onChange={(e) => handleTimelineChange(index, 'type', e.target.value)}
-                                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
-                                                                >
-                                                                    <option value="experience">Experience</option>
-                                                                    <option value="education">Education</option>
-                                                                </select>
-                                                            </div>
-                                                            <div>
-                                                                <label className="block text-xs font-medium text-gray-400 mb-1">Period</label>
-                                                                <input
-                                                                    type="text"
-                                                                    value={item.period}
-                                                                    onChange={(e) => handleTimelineChange(index, 'period', e.target.value)}
-                                                                    placeholder="e.g. Mar 2024 - PRESENT"
-                                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
-                                                                />
-                                                            </div>
-                                                            <div>
-                                                                <label className="block text-xs font-medium text-gray-400 mb-1">Position / Degree</label>
-                                                                <input
-                                                                    type="text"
-                                                                    value={item.title}
-                                                                    onChange={(e) => handleTimelineChange(index, 'title', e.target.value)}
-                                                                    placeholder="e.g. Senior Developer"
-                                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
-                                                                />
-                                                            </div>
-                                                            <div className="md:col-span-2">
-                                                                <label className="block text-xs font-medium text-gray-400 mb-1">Company / Institution</label>
-                                                                <input
-                                                                    type="text"
-                                                                    value={item.company}
-                                                                    onChange={(e) => handleTimelineChange(index, 'company', e.target.value)}
-                                                                    placeholder="e.g. Google"
-                                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
-                                                                />
-                                                            </div>
-                                                            <div className="md:col-span-2">
-                                                                <label className="block text-xs font-medium text-gray-400 mb-1">Description</label>
-                                                                <textarea
-                                                                    value={item.description}
-                                                                    onChange={(e) => handleTimelineChange(index, 'description', e.target.value)}
-                                                                    rows="3"
-                                                                    placeholder="Describe your role and achievements..."
-                                                                    className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500 resize-none"
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </Reorder.Item>
-                                                ))}
-                                            </Reorder.Group>
-
-                                            {localTimeline.length === 0 && (
-                                                <div className="text-center py-12 text-gray-500 bg-slate-900/50 rounded-xl border border-dashed border-gray-700">
-                                                    No timeline entries found. Click "Add Entry" to start.
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="flex justify-end pt-4 border-t border-gray-700">
-                                            <button
-                                                onClick={saveTimeline}
-                                                disabled={isSaving}
-                                                className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                                            >
-                                                {isSaving ? (
-                                                    <>
-                                                        <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                                                        Saving...
-                                                    </>
-                                                ) : (
-                                                    <>
-                                                        <FaSave /> Save Timeline
-                                                    </>
-                                                )}
-                                            </button>
-                                        </div>
+                            {/* Experience Stats */}
+                            <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-900/30">
+                                <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                                    🚀 Experience Stats
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div className="bg-slate-900 p-6 rounded-lg border border-gray-700">
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Projects Completed</label>
+                                        <input
+                                            type="text"
+                                            name="projectsCompleted"
+                                            value={localExperience?.projectsCompleted || ''}
+                                            onChange={handleExperienceChange}
+                                            placeholder="3+"
+                                            className="w-full bg-slate-800 border border-gray-600 rounded-lg p-3 text-2xl font-bold focus:outline-none focus:border-purple-500 text-white text-center"
+                                        />
+                                        <p className="text-xs text-gray-500 text-center mt-2">e.g., 3+, 10+, 50+</p>
                                     </div>
-                                )
-                            }
+                                    <div className="bg-slate-900 p-6 rounded-lg border border-gray-700">
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Technologies</label>
+                                        <input
+                                            type="text"
+                                            name="clientsSatisfied"
+                                            value={localExperience?.clientsSatisfied || ''}
+                                            onChange={handleExperienceChange}
+                                            placeholder="30+"
+                                            className="w-full bg-slate-800 border border-gray-600 rounded-lg p-3 text-2xl font-bold focus:outline-none focus:border-purple-500 text-white text-center"
+                                        />
+                                        <p className="text-xs text-gray-500 text-center mt-2">e.g., 10+, 20+</p>
+                                    </div>
+                                    <div className="bg-slate-900 p-6 rounded-lg border border-gray-700">
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Years Experience</label>
+                                        <input
+                                            type="text"
+                                            name="yearsExperience"
+                                            value={localExperience?.yearsExperience || ''}
+                                            onChange={handleExperienceChange}
+                                            placeholder="2+"
+                                            className="w-full bg-slate-800 border border-gray-600 rounded-lg p-3 text-2xl font-bold focus:outline-none focus:border-purple-500 text-white text-center"
+                                        />
+                                        <p className="text-xs text-gray-500 text-center mt-2">e.g., 1+, 2+, 5+</p>
+                                    </div>
+                                </div>
+                                <button
+                                    onClick={saveExperience}
+                                    className="mt-6 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-all"
+                                >
+                                    <FaSave /> Save Experience Stats
+                                </button>
+                            </div>
 
-                        </div >
-            </div >
-
-                {/* Success Toast */}
-                < AnimatePresence >
-                    {showSuccess && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 50 }}
-                            className="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-3 z-50"
-                        >
-                            <FaCheck className="text-xl" />
-                            <span className="font-medium">Changes saved successfully!</span>
-                        </motion.div>
+                            {/* Preview */}
+                            <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 p-6 rounded-xl border border-purple-700/30">
+                                <h4 className="text-lg font-bold text-white mb-4">📊 Preview (Homepage)</h4>
+                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div className="text-center p-4 bg-slate-900/50 rounded-lg">
+                                        <div className="text-3xl font-bold text-purple-400">{localExperience?.projectsCompleted || '0+'}</div>
+                                        <div className="text-sm text-gray-400 mt-1">Projects Completed</div>
+                                    </div>
+                                    <div className="text-center p-4 bg-slate-900/50 rounded-lg">
+                                        <div className="text-3xl font-bold text-blue-400">{localExperience?.clientsSatisfied || '0+'}</div>
+                                        <div className="text-sm text-gray-400 mt-1">Clients Satisfied</div>
+                                    </div>
+                                    <div className="text-center p-4 bg-slate-900/50 rounded-lg">
+                                        <div className="text-3xl font-bold text-pink-400">{localExperience?.yearsExperience || '0+'}</div>
+                                        <div className="text-sm text-gray-400 mt-1">Years Experience</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     )}
-                </AnimatePresence >
 
-                {/* Error Toast */}
-                < AnimatePresence >
-                    {saveError && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 50 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 50 }}
-                            className="fixed bottom-8 right-8 bg-red-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-3 z-50"
-                        >
-                            <span className="font-medium">{saveError}</span>
-                        </motion.div>
+                    {/* Timeline Tab */}
+                    {activeTab === 'timeline' && (
+                        <div className="space-y-8">
+                            {/* Profile Section (Added to Timeline Tab) */}
+                            <div className="bg-slate-800/50 p-6 rounded-xl border border-purple-900/30">
+                                <h3 className="text-xl font-bold text-purple-400 mb-6 flex items-center gap-2">
+                                    👤 Profile & Bio
+                                </h3>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Full Name</label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={localProfile.name}
+                                            onChange={handleProfileChange}
+                                            className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Role / Title</label>
+                                        <input
+                                            type="text"
+                                            name="role"
+                                            value={localProfile.role}
+                                            onChange={handleProfileChange}
+                                            className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white"
+                                        />
+                                    </div>
+                                    <div className="md:col-span-2">
+                                        <label className="block text-xs font-medium text-gray-400 mb-2">Bio / Description</label>
+                                        <textarea
+                                            name="bio"
+                                            value={localProfile.bio}
+                                            onChange={handleProfileChange}
+                                            rows="4"
+                                            className="w-full bg-slate-900 border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-purple-500 text-white resize-none"
+                                        />
+                                    </div>
+
+                                </div>
+                                <button
+                                    onClick={saveProfile}
+                                    className="mt-6 flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-all"
+                                >
+                                    <FaSave /> Save Profile
+                                </button>
+                            </div>
+                        </div>
                     )}
-                </AnimatePresence >
+                    {/* Timeline Tab */}
+                    {
+                        activeTab === 'timeline' && (
+                            <div className="space-y-6">
+                                <div className="flex justify-between items-center">
+                                    <h2 className="text-xl font-bold text-white">Timeline & Education</h2>
+                                    <button
+                                        onClick={addTimelineItem}
+                                        className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg flex items-center gap-2 transition-colors"
+                                    >
+                                        <FaPlus /> Add Entry
+                                    </button>
+                                </div>
 
-                {showSuccess && <Confetti numberOfPieces={200} recycle={false} />}
-            </div >
-            );
+                                <div className="space-y-4">
+                                    <Reorder.Group axis="y" values={localTimeline} onReorder={handleReorder} className="space-y-4">
+                                        {localTimeline.map((item, index) => (
+                                            <Reorder.Item
+                                                key={item.id || index}
+                                                value={item}
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                className="bg-slate-900 border border-gray-700 rounded-xl p-6 relative group"
+                                            >
+                                                <div className="absolute top-4 left-4 p-2 text-gray-600 cursor-grab active:cursor-grabbing hover:text-gray-400 z-10">
+                                                    <FaGripVertical />
+                                                </div>
+                                                <button
+                                                    onClick={() => removeTimelineItem(index)}
+                                                    className="absolute top-4 right-4 p-2 bg-red-500/10 text-red-500 rounded-lg opacity-0 group-hover:opacity-100 transition-all hover:bg-red-500 hover:text-white"
+                                                    title="Delete Entry"
+                                                >
+                                                    <FaTrash />
+                                                </button>
+
+                                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4 pl-8">
+                                                    <div className="md:col-span-2">
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Type</label>
+                                                        <select
+                                                            value={item.type || 'experience'}
+                                                            onChange={(e) => handleTimelineChange(index, 'type', e.target.value)}
+                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
+                                                        >
+                                                            <option value="experience">Experience</option>
+                                                            <option value="education">Education</option>
+                                                        </select>
+                                                    </div>
+                                                    <div>
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Period</label>
+                                                        <input
+                                                            type="text"
+                                                            value={item.period}
+                                                            onChange={(e) => handleTimelineChange(index, 'period', e.target.value)}
+                                                            placeholder="e.g. Mar 2024 - PRESENT"
+                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Position / Degree</label>
+                                                        <input
+                                                            type="text"
+                                                            value={item.title}
+                                                            onChange={(e) => handleTimelineChange(index, 'title', e.target.value)}
+                                                            placeholder="e.g. Senior Developer"
+                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
+                                                        />
+                                                    </div>
+                                                    <div className="md:col-span-2">
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Company / Institution</label>
+                                                        <input
+                                                            type="text"
+                                                            value={item.company}
+                                                            onChange={(e) => handleTimelineChange(index, 'company', e.target.value)}
+                                                            placeholder="e.g. Google"
+                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500"
+                                                        />
+                                                    </div>
+                                                    <div className="md:col-span-2">
+                                                        <label className="block text-xs font-medium text-gray-400 mb-1">Description</label>
+                                                        <textarea
+                                                            value={item.description}
+                                                            onChange={(e) => handleTimelineChange(index, 'description', e.target.value)}
+                                                            rows="3"
+                                                            placeholder="Describe your role and achievements..."
+                                                            className="w-full bg-slate-800 border border-gray-700 rounded-lg p-2 text-sm focus:outline-none focus:border-purple-500 resize-none"
+                                                        />
+                                                    </div>
+                                                </div>
+                                            </Reorder.Item>
+                                        ))}
+                                    </Reorder.Group>
+
+                                    {localTimeline.length === 0 && (
+                                        <div className="text-center py-12 text-gray-500 bg-slate-900/50 rounded-xl border border-dashed border-gray-700">
+                                            No timeline entries found. Click "Add Entry" to start.
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div className="flex justify-end pt-4 border-t border-gray-700">
+                                    <button
+                                        onClick={saveTimeline}
+                                        disabled={isSaving}
+                                        className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    >
+                                        {isSaving ? (
+                                            <>
+                                                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                                Saving...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <FaSave /> Save Timeline
+                                            </>
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+                        )
+                    }
+
+
+                    {/* Success Toast */}
+                    <AnimatePresence>
+                        {showSuccess && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 50 }}
+                                className="fixed bottom-8 right-8 bg-green-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-3 z-50"
+                            >
+                                <FaCheck className="text-xl" />
+                                <span className="font-medium">Changes saved successfully!</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {/* Error Toast */}
+                    <AnimatePresence>
+                        {saveError && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: 50 }}
+                                className="fixed bottom-8 right-8 bg-red-600 text-white px-6 py-3 rounded-lg shadow-xl flex items-center gap-3 z-50"
+                            >
+                                <span className="font-medium">{saveError}</span>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+
+                    {showSuccess && <Confetti numberOfPieces={200} recycle={false} />}
+                </div>
+            </div>
+        </div>
+    );
 };
 
-            export default AdminPanel;
+export default AdminPanel;
