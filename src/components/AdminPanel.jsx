@@ -125,6 +125,50 @@ const AdminPanel = () => {
         );
     }
 
+    // Image Compression Utility
+    const compressImage = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (event) => {
+                const img = new Image();
+                img.src = event.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Max dimensions
+                    const MAX_WIDTH = 1200;
+                    const MAX_HEIGHT = 1200;
+                    let width = img.width;
+                    let height = img.height;
+
+                    if (width > height) {
+                        if (width > MAX_WIDTH) {
+                            height *= MAX_WIDTH / width;
+                            width = MAX_WIDTH;
+                        }
+                    } else {
+                        if (height > MAX_HEIGHT) {
+                            width *= MAX_HEIGHT / height;
+                            height = MAX_HEIGHT;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Compress to JPEG with 0.8 quality
+                    const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                    resolve(compressedDataUrl);
+                };
+                img.onerror = (error) => reject(error);
+            };
+            reader.onerror = (error) => reject(error);
+        });
+    };
+
     const handleLogout = () => {
         localStorage.removeItem('isAuthenticated');
         navigate('/login');
@@ -149,65 +193,45 @@ const AdminPanel = () => {
         }
     };
 
-    const handleImageUpload = (e) => {
+    const handleImageUpload = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Check file size (keep under 1MB for MongoDB)
-            const maxSize = 1024 * 1024; // 1MB
-            if (file.size > maxSize) {
-                alert(`File is too large! Maximum size is ${(maxSize / 1024).toFixed(0)}KB. Please compress the image.`);
-                e.target.value = '';
-                return;
+            try {
+                if (e.target.value) {
+                    console.log('📤 Processing profile image:', file.name, `(${(file.size / 1024).toFixed(2)} KB)`);
+                    const compressedImage = await compressImage(file);
+                    console.log('✅ Profile image compressed:', (compressedImage.length / 1024).toFixed(2), 'KB');
+                    setLocalProfile(prev => ({ ...prev, image: compressedImage }));
+                }
+            } catch (error) {
+                console.error('Error processing image:', error);
+                alert('Failed to process image. Please try another file.');
             }
 
-            // Prevent duplicate uploads in React StrictMode
-            if (e.target.value) {
-                console.log('📤 Uploading profile image:', file.name);
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    console.log('✅ Profile image loaded, size:', (reader.result.length / 1024).toFixed(2), 'KB');
-                    setLocalProfile(prev => ({ ...prev, image: reader.result }));
-                };
-                reader.readAsDataURL(file);
-            }
-            // Reset input to allow same file to be selected again
+            // Reset input
             setTimeout(() => {
                 e.target.value = '';
             }, 100);
         }
     };
 
-    const handleLogoUpload = (e) => {
+    const handleLogoUpload = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            // Check file size (MongoDB limit is ~16MB per document, stay under 1MB for safety)
-            const maxSize = 1024 * 1024; // 1MB
-            if (file.size > maxSize) {
-                alert(`File is too large! Maximum size is ${(maxSize / 1024).toFixed(0)}KB. Your file is ${(file.size / 1024).toFixed(0)}KB. Please compress the image.`);
-                e.target.value = '';
-                return;
-            }
-
-            // Prevent duplicate uploads in React StrictMode
-            if (e.target.value) {
-                console.log('📤 Uploading logo:', file.name, `(${(file.size / 1024).toFixed(2)} KB)`);
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    const base64Size = reader.result.length;
-                    const base64SizeKB = (base64Size / 1024).toFixed(2);
-                    console.log('✅ Logo loaded, base64 size:', base64SizeKB, 'KB');
-
-                    setLocalProfile(prev => ({ ...prev, logo: reader.result }));
+            try {
+                if (e.target.value) {
+                    console.log('📤 Processing logo:', file.name, `(${(file.size / 1024).toFixed(2)} KB)`);
+                    const compressedImage = await compressImage(file);
+                    console.log('✅ Logo compressed:', (compressedImage.length / 1024).toFixed(2), 'KB');
+                    setLocalProfile(prev => ({ ...prev, logo: compressedImage }));
                     setSaveError(null);
-                };
-                reader.onerror = () => {
-                    console.error('❌ Error reading file');
-                    alert('Error reading file. Please try again.');
-                    e.target.value = '';
-                };
-                reader.readAsDataURL(file);
+                }
+            } catch (error) {
+                console.error('Error processing logo:', error);
+                alert('Failed to process logo. Please try another file.');
             }
-            // Reset input to allow same file to be selected again
+
+            // Reset input
             setTimeout(() => {
                 e.target.value = '';
             }, 100);
@@ -304,24 +328,20 @@ const AdminPanel = () => {
         }
     };
 
-    const handleProjectImageUpload = (index, e) => {
+    const handleProjectImageUpload = async (index, e) => {
         const file = e.target.files[0];
         if (file) {
-            const maxSize = 1024 * 1024; // 1MB
-            if (file.size > maxSize) {
-                alert(`File is too large! Maximum size is ${(maxSize / 1024).toFixed(0)}KB. Please compress the image.`);
-                e.target.value = '';
-                return;
+            try {
+                if (e.target.value) {
+                    console.log(`📤 Processing image for project ${index}:`, file.name);
+                    const compressedImage = await compressImage(file);
+                    handleProjectChange(index, 'image', compressedImage);
+                }
+            } catch (error) {
+                console.error('Error processing project image:', error);
+                alert('Failed to process image. Please try another file.');
             }
 
-            if (e.target.value) {
-                console.log(`📤 Uploading image for project ${index}:`, file.name);
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    handleProjectChange(index, 'image', reader.result);
-                };
-                reader.readAsDataURL(file);
-            }
             setTimeout(() => {
                 e.target.value = '';
             }, 100);
